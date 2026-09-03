@@ -51,14 +51,6 @@ const coffeeMenu = [
   { name: "Iskaffe", desc: "Kald og frisk, perfekt på benken ute", price: "59" },
 ];
 
-const pizzaMenu = [
-  { name: "Margherita", desc: "", price: "225" },
-  { name: "Bufo Skinke", desc: "", price: "235" },
-  { name: "Grønne Padde", desc: "", price: "245" },
-  { name: "Paddens Picante", desc: "", price: "255" },
-  { name: "Paddemyrens Spekeskinke", desc: "", price: "260" },
-  { name: "Bufo Bianco", desc: "", price: "265" },
-];
 
 const drinksMenu = [
   { name: "Naturvin, glass", desc: "Roterende utvalg fra små produsenter", price: "125" },
