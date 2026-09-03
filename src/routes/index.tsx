@@ -117,33 +117,49 @@ function SiteHeader() {
 
 function Hero() {
   return (
-    <section id="topp" className="relative">
-      <div className="relative h-[78vh] min-h-[520px] w-full overflow-hidden">
-        <img
-          src={photoOven.url}
-          alt="Ansatt med pizzaspade henter vedfyrt pizza ut av ovnen på Padden Kaffe"
-          className="h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/40 via-primary/25 to-primary/80" />
-        <div className="container-pk absolute inset-x-0 bottom-0 pb-10">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-primary-foreground/80">
+    <section id="topp" className="bg-background py-14 sm:py-20">
+      <div className="container-pk grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+        <div>
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-accent">
             Mannsverk · Bergen
           </p>
-          <h1 className="max-w-3xl text-5xl leading-[0.95] text-primary-foreground sm:text-7xl">
-            Padden Kaffe
-          </h1>
-          <p className="mt-4 max-w-xl text-lg text-primary-foreground/90">
+          <h1 className="text-5xl leading-[0.95] sm:text-7xl">Padden Kaffe</h1>
+          <p className="mt-5 max-w-md text-xl text-muted-foreground">
             Kaffe og vedfyrt pizza i nabolaget.
           </p>
-          <div className="mt-6 flex flex-wrap items-center gap-3">
-            <span className="rounded-full bg-background/95 px-4 py-2 text-sm font-semibold text-foreground">
+          <div className="mt-7 flex flex-wrap items-center gap-3">
+            <span className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground">
               ★ 4,7 av 5 · 13 anmeldelser på Google
             </span>
-            <span className="rounded-full border border-primary-foreground/40 px-4 py-2 text-sm font-medium text-primary-foreground">
+            <span className="rounded-full border border-border px-4 py-2 text-sm font-medium">
               100–200 kr per person
             </span>
           </div>
+          <div className="mt-7 flex flex-wrap gap-3">
+            <a
+              href="#meny"
+              className="rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-foreground transition-opacity hover:opacity-90"
+            >
+              Se menyen
+            </a>
+            <a
+              href="#besok"
+              className="rounded-full border border-primary px-5 py-2.5 text-sm font-semibold transition-colors hover:bg-secondary"
+            >
+              Åpningstider
+            </a>
+          </div>
         </div>
+
+        <figure className="overflow-hidden rounded-3xl border border-border bg-secondary">
+          <img
+            src={photoOven.url}
+            alt="Ansatt med pizzaspade henter vedfyrt pizza ut av ovnen på Padden Kaffe"
+            width={523}
+            height={653}
+            className="mx-auto h-auto w-full max-w-[523px] object-contain"
+          />
+        </figure>
       </div>
     </section>
   );
