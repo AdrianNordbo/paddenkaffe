@@ -4,7 +4,7 @@ import { useReveal } from "@/hooks/use-reveal";
 import photoOven from "@/assets/photo-oven.json";
 import photoPizzas from "@/assets/photo-pizzas.json";
 import photoCutting from "@/assets/photo-cutting.json";
-import paddenPizza from "@/assets/padden-pizza.png.asset.json";
+
 import frogChef from "@/assets/frog-chef.json";
 import frogWine from "@/assets/frog-wine.json";
 import frogIcecream from "@/assets/frog-icecream.json";
@@ -51,6 +51,15 @@ const coffeeMenu = [
   { name: "Iskaffe", desc: "Kald og frisk, perfekt på benken ute", price: "59" },
 ];
 
+
+const pizzaMenu = [
+  { name: "Margherita", price: "225" },
+  { name: "Bufo Skinke", price: "235" },
+  { name: "Grønne Padde", price: "245" },
+  { name: "Paddens Picante", price: "255" },
+  { name: "Paddemyrens Spekeskinke", price: "260" },
+  { name: "Bufo Bianco", price: "265" },
+];
 
 const drinksMenu = [
   { name: "Naturvin, glass", desc: "Roterende utvalg fra små produsenter", price: "125" },
@@ -187,7 +196,7 @@ function Story() {
   );
 }
 
-function MenuList({ title, items }: { title: string; items: typeof coffeeMenu }) {
+function MenuList({ title, items }: { title: string; items: { name: string; desc?: string; price: string }[] }) {
   return (
     <div data-reveal className="reveal">
       <h3 className="text-2xl">{title}</h3>
@@ -223,14 +232,7 @@ function Menu() {
 
         <div className="mt-14 grid gap-14 md:grid-cols-2">
           <MenuList title="Kaffe" items={coffeeMenu} />
-          <figure data-reveal className="reveal">
-            <img
-              src={paddenPizza.url}
-              alt="Padden Pizza meny: Margherita, Bufo Skinke, Grønne Padde, Paddens Picante, Paddemyrens Spekeskinke og Bufo Bianco, med froskekokken ved pizzaovnen"
-              className="mx-auto h-auto w-full max-w-[480px] object-contain"
-              loading="lazy"
-            />
-          </figure>
+          <MenuList title="Pizza" items={pizzaMenu} />
         </div>
 
         <div className="my-16 flex flex-col items-center gap-6 border-y border-border py-12 text-center">
