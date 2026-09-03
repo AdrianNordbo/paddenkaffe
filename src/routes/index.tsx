@@ -196,7 +196,7 @@ function Story() {
   );
 }
 
-function MenuList({ title, items }: { title: string; items: typeof coffeeMenu }) {
+function MenuList({ title, items }: { title: string; items: { name: string; desc?: string; price: string }[] }) {
   return (
     <div data-reveal className="reveal">
       <h3 className="text-2xl">{title}</h3>
