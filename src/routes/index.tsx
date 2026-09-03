@@ -261,25 +261,23 @@ function Gallery() {
   ];
 
   return (
-    <section id="galleri" className="py-20 sm:py-28">
+    <section id="galleri" className="bg-secondary py-20 sm:py-28">
       <div className="container-pk">
         <h2 data-reveal className="reveal text-4xl sm:text-5xl">
           Fra kjøkkenet
         </h2>
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {shots.map((shot, i) => (
+          {shots.map((shot) => (
             <figure
               key={shot.src}
               data-reveal
-              className={`reveal overflow-hidden rounded-3xl bg-secondary ${
-                i === 0 ? "sm:col-span-2 lg:col-span-2" : ""
-              }`}
+              className="reveal overflow-hidden rounded-3xl bg-background"
             >
               <img
                 src={shot.src}
                 alt={shot.alt}
                 loading="lazy"
-                className="h-full max-h-[520px] w-full object-cover"
+                className="mx-auto h-auto w-full max-w-[584px] object-contain"
               />
             </figure>
           ))}
