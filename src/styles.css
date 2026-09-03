@@ -48,8 +48,9 @@
   --font-display: "Baloo 2", ui-rounded, system-ui, sans-serif;
   --font-body: "Karla", ui-sans-serif, system-ui, sans-serif;
 
-  --cream: oklch(0.951 0.036 92.5);
-  --cream-deep: oklch(0.915 0.048 91);
+  /* Eksakt beige fra frosk-illustrasjonene (#f6e8c3) */
+  --cream: oklch(0.9328 0.0507 89.8);
+  --cream-deep: oklch(0.897 0.0577 89.7);
   --forest: oklch(0.35 0.055 155);
   --ember: oklch(0.68 0.15 55);
 
