@@ -181,7 +181,7 @@ function Story() {
             skorpe. Resten av oss gjør stort sett som han sier.
           </p>
         </div>
-        <div data-reveal className="reveal rounded-3xl bg-secondary p-6 sm:p-10">
+        <div data-reveal className="reveal rounded-3xl bg-background p-6 sm:p-10">
           <img
             src={frogChef.url}
             alt="Illustrasjon av Padden som kokk foran en vedfyrt pizzaovn"
