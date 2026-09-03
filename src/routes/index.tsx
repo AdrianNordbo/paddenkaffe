@@ -4,6 +4,7 @@ import { useReveal } from "@/hooks/use-reveal";
 import photoOven from "@/assets/photo-oven.json";
 import photoPizzas from "@/assets/photo-pizzas.json";
 import photoCutting from "@/assets/photo-cutting.json";
+import paddenPizza from "@/assets/padden-pizza.png.asset.json";
 import frogChef from "@/assets/frog-chef.json";
 import frogWine from "@/assets/frog-wine.json";
 import frogIcecream from "@/assets/frog-icecream.json";
@@ -50,14 +51,6 @@ const coffeeMenu = [
   { name: "Iskaffe", desc: "Kald og frisk, perfekt på benken ute", price: "59" },
 ];
 
-const pizzaMenu = [
-  { name: "Margherita", desc: "", price: "225" },
-  { name: "Bufo Skinke", desc: "", price: "235" },
-  { name: "Grønne Padde", desc: "", price: "245" },
-  { name: "Paddens Picante", desc: "", price: "255" },
-  { name: "Paddemyrens Spekeskinke", desc: "", price: "260" },
-  { name: "Bufo Bianco", desc: "", price: "265" },
-];
 
 const drinksMenu = [
   { name: "Naturvin, glass", desc: "Roterende utvalg fra små produsenter", price: "125" },
@@ -230,17 +223,17 @@ function Menu() {
 
         <div className="mt-14 grid gap-14 md:grid-cols-2">
           <MenuList title="Kaffe" items={coffeeMenu} />
-          <div className="space-y-8">
-            <figure className="overflow-hidden rounded-3xl border border-border bg-secondary">
-              <img
-                src={photoPizzas.url}
-                alt="To ferdigstekte pizzaer på trefjøl i kjøkkenet"
-                className="mx-auto h-auto w-full max-w-[584px] object-contain"
-                loading="lazy"
-              />
-            </figure>
-            <MenuList title="Vedfyrt pizza" items={pizzaMenu} />
-          </div>
+          <figure
+            data-reveal
+            className="reveal overflow-hidden rounded-3xl border border-border bg-secondary"
+          >
+            <img
+              src={paddenPizza.url}
+              alt="Padden Pizza meny: Margherita, Bufo Skinke, Grønne Padde, Paddens Picante, Paddemyrens Spekeskinke og Bufo Bianco, med froskekokken ved pizzaovnen"
+              className="mx-auto h-auto w-full max-w-[480px] object-contain"
+              loading="lazy"
+            />
+          </figure>
         </div>
 
         <div className="my-16 flex flex-col items-center gap-6 border-y border-border py-12 text-center">
