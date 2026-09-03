@@ -4,6 +4,7 @@ import { useReveal } from "@/hooks/use-reveal";
 import photoOven from "@/assets/photo-oven.json";
 import photoPizzas from "@/assets/photo-pizzas.json";
 import photoCutting from "@/assets/photo-cutting.json";
+import paddenPizza from "@/assets/padden-pizza.png.asset.json";
 import frogChef from "@/assets/frog-chef.json";
 import frogWine from "@/assets/frog-wine.json";
 import frogIcecream from "@/assets/frog-icecream.json";
