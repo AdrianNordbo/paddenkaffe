@@ -225,7 +225,7 @@ function Menu() {
           Meny
         </h2>
         <p data-reveal className="reveal mt-3 max-w-lg text-muted-foreground">
-          Kaffe hele dagen, pizza fra kl. 15. Prisnivå 100–200 kr per person.
+          Kaffe hele dagen. Pizza torsdag og fredag fra kl. 15, lørdag og søndag fra kl. 13.
         </p>
 
         <div className="mt-14 grid gap-14 md:grid-cols-2">
