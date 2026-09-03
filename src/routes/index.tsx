@@ -1,24 +1,375 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+import { useReveal } from "@/hooks/use-reveal";
+import photoOven from "@/assets/photo-oven.json";
+import photoPizzas from "@/assets/photo-pizzas.json";
+import photoCutting from "@/assets/photo-cutting.json";
+import frogChef from "@/assets/frog-chef.json";
+import frogWine from "@/assets/frog-wine.json";
+import frogIcecream from "@/assets/frog-icecream.json";
+
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Padden Kaffe – Kaffe og vedfyrt pizza i Bergen" },
+      {
+        name: "description",
+        content:
+          "Padden Kaffe på Mannsverk i Bergen: nybrygget kaffe og vedfyrt pizza i nabolaget. Se meny, åpningstider og finn veien til oss.",
+      },
+      { property: "og:title", content: "Padden Kaffe – Kaffe og vedfyrt pizza i Bergen" },
+      {
+        property: "og:description",
+        content:
+          "Nabolagets kaffebar og vedfyrte pizzeria på Mannsverk 2, Bergen. Meny, åpningstider og veibeskrivelse.",
+      },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
+const ADDRESS = "Mannsverk 2, 5094 Bergen";
+const MAPS_EMBED = `https://www.google.com/maps?q=${encodeURIComponent(ADDRESS)}&output=embed`;
+
+const openingHours = [
+  { day: "Mandag", hours: "Stengt", closed: true },
+  { day: "Tirsdag", hours: "11–17" },
+  { day: "Onsdag", hours: "11–17" },
+  { day: "Torsdag", hours: "11–22" },
+  { day: "Fredag", hours: "11–21" },
+  { day: "Lørdag", hours: "11–21" },
+  { day: "Søndag", hours: "11–17" },
+];
+
+const coffeeMenu = [
+  { name: "Filterkaffe", desc: "Dagens brygg, alltid ferskt", price: "39" },
+  { name: "Americano", desc: "Dobbel espresso og varmt vann", price: "45" },
+  { name: "Cortado", desc: "Espresso med litt melk", price: "49" },
+  { name: "Flat white", desc: "Fyldig og silkemyk", price: "55" },
+  { name: "Cappuccino", desc: "Klassikeren, med skum", price: "55" },
+  { name: "Iskaffe", desc: "Kald og frisk, perfekt på benken ute", price: "59" },
+];
+
+const pizzaMenu = [
+  { name: "Margherita", desc: "Tomat, fior di latte, basilikum", price: "179" },
+  { name: "Pepperoni", desc: "Tomat, mozzarella, spicy pepperoni", price: "199" },
+  { name: "Squash & pesto", desc: "Squash, pesto, ruccola, parmesan", price: "199" },
+  { name: "Bianca", desc: "Hvit bunn, ricotta, hvitløk, timian", price: "189" },
+  { name: "Padden spesial", desc: "Det kokken finner på denne uka", price: "209" },
+  { name: "Sesongens grønne", desc: "Grønnsaker fra torget, sitron, olivenolje", price: "189" },
+];
+
+const drinksMenu = [
+  { name: "Naturvin, glass", desc: "Roterende utvalg fra små produsenter", price: "125" },
+  { name: "Øl fra fat", desc: "Lokalt bryggeri", price: "99" },
+  { name: "Softis", desc: "Padden sin favoritt", price: "45" },
+];
+
 function Index() {
+  useReveal();
+
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-screen bg-background">
+      <SiteHeader />
+      <main>
+        <Hero />
+        <Story />
+        <Menu />
+        <Gallery />
+        <Visit />
+      </main>
+      <SiteFooter />
     </div>
+  );
+}
+
+function SiteHeader() {
+  return (
+    <header className="sticky top-0 z-40 border-b border-border/60 bg-background/90 backdrop-blur">
+      <div className="container-pk flex items-center justify-between py-3">
+        <a href="#topp" className="font-display text-lg font-extrabold tracking-tight text-primary">
+          Padden Kaffe
+        </a>
+        <nav className="hidden gap-6 text-sm font-medium sm:flex">
+          <a className="hover:text-accent" href="#historien">
+            Historien
+          </a>
+          <a className="hover:text-accent" href="#meny">
+            Meny
+          </a>
+          <a className="hover:text-accent" href="#galleri">
+            Galleri
+          </a>
+          <a className="hover:text-accent" href="#besok">
+            Besøk oss
+          </a>
+        </nav>
+        <a
+          href="#besok"
+          className="rounded-full bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground transition-opacity hover:opacity-90 sm:text-sm"
+        >
+          Åpningstider
+        </a>
+      </div>
+    </header>
+  );
+}
+
+function Hero() {
+  return (
+    <section id="topp" className="relative">
+      <div className="relative h-[78vh] min-h-[520px] w-full overflow-hidden">
+        <img
+          src={photoOven.url}
+          alt="Ansatt med pizzaspade henter vedfyrt pizza ut av ovnen på Padden Kaffe"
+          className="h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/40 via-primary/25 to-primary/80" />
+        <div className="container-pk absolute inset-x-0 bottom-0 pb-10">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-primary-foreground/80">
+            Mannsverk · Bergen
+          </p>
+          <h1 className="max-w-3xl text-5xl leading-[0.95] text-primary-foreground sm:text-7xl">
+            Padden Kaffe
+          </h1>
+          <p className="mt-4 max-w-xl text-lg text-primary-foreground/90">
+            Kaffe og vedfyrt pizza i nabolaget.
+          </p>
+          <div className="mt-6 flex flex-wrap items-center gap-3">
+            <span className="rounded-full bg-background/95 px-4 py-2 text-sm font-semibold text-foreground">
+              ★ 4,7 av 5 · 13 anmeldelser på Google
+            </span>
+            <span className="rounded-full border border-primary-foreground/40 px-4 py-2 text-sm font-medium text-primary-foreground">
+              100–200 kr per person
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Story() {
+  return (
+    <section id="historien" className="py-20 sm:py-28">
+      <div className="container-pk grid items-center gap-12 md:grid-cols-2">
+        <div data-reveal className="reveal">
+          <h2 className="text-4xl sm:text-5xl">Padden holder til på hjørnet</h2>
+          <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+            Vi er et lite nabolagssted på Mannsverk. Om morgenen lukter det nytrukket kaffe, om
+            ettermiddagen tar vedovnen over. Ingen store planer — bare deig som får hvile lenge nok,
+            råvarer vi liker, og folk som stikker innom fordi det er hjemme rundt hjørnet.
+          </p>
+          <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
+            Padden selv er sjefen på kjøkkenet. Han har bart, forkle og sterke meninger om
+            skorpe. Resten av oss gjør stort sett som han sier.
+          </p>
+        </div>
+        <div data-reveal className="reveal rounded-3xl bg-secondary p-6 sm:p-10">
+          <img
+            src={frogChef.url}
+            alt="Illustrasjon av Padden som kokk foran en vedfyrt pizzaovn"
+            className="mx-auto w-full max-w-sm"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function MenuList({ title, items }: { title: string; items: typeof coffeeMenu }) {
+  return (
+    <div data-reveal className="reveal">
+      <h3 className="text-2xl">{title}</h3>
+      <ul className="mt-6 space-y-5">
+        {items.map((item) => (
+          <li key={item.name} className="flex items-baseline gap-4">
+            <div className="min-w-0">
+              <p className="font-semibold">{item.name}</p>
+              <p className="text-sm text-muted-foreground">{item.desc}</p>
+            </div>
+            <span
+              className="h-px flex-1 self-center border-b border-dashed border-border"
+              aria-hidden="true"
+            />
+            <span className="font-display text-lg font-bold">{item.price},-</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function Menu() {
+  return (
+    <section id="meny" className="bg-secondary/60 py-20 sm:py-28">
+      <div className="container-pk">
+        <h2 data-reveal className="reveal text-4xl sm:text-5xl">
+          Meny
+        </h2>
+        <p data-reveal className="reveal mt-3 max-w-lg text-muted-foreground">
+          Kaffe hele dagen, pizza fra kl. 15. Prisnivå 100–200 kr per person.
+        </p>
+
+        <div className="mt-14 grid gap-14 md:grid-cols-2">
+          <MenuList title="Kaffe" items={coffeeMenu} />
+          <MenuList title="Vedfyrt pizza" items={pizzaMenu} />
+        </div>
+
+        <div className="my-16 flex flex-col items-center gap-6 border-y border-border py-12 text-center">
+          <img
+            src={frogWine.url}
+            alt="Illustrasjon av to padder som skåler med vin på en benk"
+            className="w-full max-w-md"
+            loading="lazy"
+          />
+          <p className="max-w-md font-display text-xl">
+            Og et glass til pizzaen? Det ordner Padden og kompisen hans.
+          </p>
+        </div>
+
+        <div className="max-w-xl">
+          <MenuList title="Vin, øl og søtt" items={drinksMenu} />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Gallery() {
+  const shots = [
+    { src: photoCutting.url, alt: "Pizza med squash og ruccola deles opp med pizzahjul" },
+    { src: photoPizzas.url, alt: "To ferdigstekte pizzaer på trefjøl i kjøkkenet" },
+    { src: photoOven.url, alt: "Ansatt i grønt Padden Kaffe-forkle ved pizzaovnen" },
+  ];
+
+  return (
+    <section id="galleri" className="py-20 sm:py-28">
+      <div className="container-pk">
+        <h2 data-reveal className="reveal text-4xl sm:text-5xl">
+          Fra kjøkkenet
+        </h2>
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {shots.map((shot, i) => (
+            <figure
+              key={shot.src}
+              data-reveal
+              className={`reveal overflow-hidden rounded-3xl bg-secondary ${
+                i === 0 ? "sm:col-span-2 lg:col-span-2" : ""
+              }`}
+            >
+              <img
+                src={shot.src}
+                alt={shot.alt}
+                loading="lazy"
+                className="h-full max-h-[520px] w-full object-cover"
+              />
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Visit() {
+  return (
+    <section id="besok" className="bg-secondary/60 py-20 sm:py-28">
+      <div className="container-pk">
+        <h2 data-reveal className="reveal text-4xl sm:text-5xl">
+          Besøk oss
+        </h2>
+
+        <div className="mt-10 grid gap-10 lg:grid-cols-2">
+          <div data-reveal className="reveal space-y-8">
+            <div>
+              <h3 className="text-xl">Adresse</h3>
+              <p className="mt-2 text-lg text-muted-foreground">{ADDRESS}</p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                ★ 4,7 av 5 (13 anmeldelser) · Prisnivå 100–200 kr per person
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-xl">Åpningstider</h3>
+              <dl className="mt-4 divide-y divide-border overflow-hidden rounded-2xl bg-card">
+                {openingHours.map((row) => (
+                  <div key={row.day} className="flex items-center justify-between px-5 py-3">
+                    <dt className="font-medium">{row.day}</dt>
+                    <dd
+                      className={
+                        row.closed ? "text-muted-foreground" : "font-display text-lg font-bold"
+                      }
+                    >
+                      {row.hours}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+
+            <div>
+              <h3 className="text-xl">Følg oss</h3>
+              <a
+                href="https://www.instagram.com/paddenkaffe/"
+                target="_blank"
+                rel="noreferrer noopener"
+                className="mt-3 inline-flex items-center rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+              >
+                @paddenkaffe på Instagram
+              </a>
+            </div>
+          </div>
+
+          <div data-reveal className="reveal overflow-hidden rounded-3xl border border-border">
+            <iframe
+              title="Kart til Padden Kaffe, Mannsverk 2, 5094 Bergen"
+              src={MAPS_EMBED}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="h-[420px] w-full lg:h-full lg:min-h-[520px]"
+            />
+          </div>
+        </div>
+
+        <div className="mt-16 flex flex-col items-center gap-5 text-center">
+          <img
+            src={frogIcecream.url}
+            alt="Illustrasjon av Padden som spiser softis"
+            className="w-48 sm:w-56"
+            loading="lazy"
+          />
+          <p className="max-w-sm font-display text-xl">
+            Kom innom og heng litt. Padden tar med softis.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function SiteFooter() {
+  return (
+    <footer className="bg-primary py-12 text-primary-foreground">
+      <div className="container-pk flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <p className="font-display text-2xl font-extrabold">Padden Kaffe</p>
+          <p className="mt-1 text-sm text-primary-foreground/80">{ADDRESS}</p>
+        </div>
+        <div className="flex flex-col gap-1 text-sm text-primary-foreground/80 sm:text-right">
+          <a
+            className="hover:text-primary-foreground"
+            href="https://www.instagram.com/paddenkaffe/"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            Instagram @paddenkaffe
+          </a>
+          <span>Tir–søn · Mandag stengt</span>
+          <span>© {new Date().getFullYear()} Padden Kaffe</span>
+        </div>
+      </div>
+    </footer>
   );
 }
