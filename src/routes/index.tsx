@@ -167,7 +167,7 @@ function Hero() {
 
 function Story() {
   return (
-    <section id="historien" className="py-20 sm:py-28">
+    <section id="historien" className="bg-secondary py-20 sm:py-28">
       <div className="container-pk grid items-center gap-12 md:grid-cols-2">
         <div data-reveal className="reveal">
           <h2 className="text-4xl sm:text-5xl">Padden holder til på hjørnet</h2>
