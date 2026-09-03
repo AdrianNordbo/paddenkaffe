@@ -51,12 +51,12 @@ const coffeeMenu = [
 ];
 
 const pizzaMenu = [
-  { name: "Margherita", desc: "Tomat, fior di latte, basilikum", price: "179" },
-  { name: "Pepperoni", desc: "Tomat, mozzarella, spicy pepperoni", price: "199" },
-  { name: "Squash & pesto", desc: "Squash, pesto, ruccola, parmesan", price: "199" },
-  { name: "Bianca", desc: "Hvit bunn, ricotta, hvitløk, timian", price: "189" },
-  { name: "Padden spesial", desc: "Det kokken finner på denne uka", price: "209" },
-  { name: "Sesongens grønne", desc: "Grønnsaker fra torget, sitron, olivenolje", price: "189" },
+  { name: "Margherita", desc: "", price: "225" },
+  { name: "Bufo Skinke", desc: "", price: "235" },
+  { name: "Grønne Padde", desc: "", price: "245" },
+  { name: "Paddens Picante", desc: "", price: "255" },
+  { name: "Paddemyrens Spekeskinke", desc: "", price: "260" },
+  { name: "Bufo Bianco", desc: "", price: "265" },
 ];
 
 const drinksMenu = [
@@ -203,7 +203,7 @@ function MenuList({ title, items }: { title: string; items: typeof coffeeMenu })
           <li key={item.name} className="flex items-baseline gap-4">
             <div className="min-w-0">
               <p className="font-semibold">{item.name}</p>
-              <p className="text-sm text-muted-foreground">{item.desc}</p>
+              {item.desc ? <p className="text-sm text-muted-foreground">{item.desc}</p> : null}
             </div>
             <span
               className="h-px flex-1 self-center border-b border-dashed border-border"
@@ -225,7 +225,7 @@ function Menu() {
           Meny
         </h2>
         <p data-reveal className="reveal mt-3 max-w-lg text-muted-foreground">
-          Kaffe hele dagen, pizza fra kl. 15. Prisnivå 100–200 kr per person.
+          Kaffe hele dagen. Pizza torsdag og fredag fra kl. 15, lørdag og søndag fra kl. 13.
         </p>
 
         <div className="mt-14 grid gap-14 md:grid-cols-2">
