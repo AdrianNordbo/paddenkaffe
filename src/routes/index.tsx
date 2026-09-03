@@ -289,7 +289,7 @@ function Gallery() {
 
 function Visit() {
   return (
-    <section id="besok" className="bg-secondary/60 py-20 sm:py-28">
+    <section id="besok" className="bg-background py-20 sm:py-28">
       <div className="container-pk">
         <h2 data-reveal className="reveal text-4xl sm:text-5xl">
           Besøk oss
