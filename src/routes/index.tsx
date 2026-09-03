@@ -230,7 +230,17 @@ function Menu() {
 
         <div className="mt-14 grid gap-14 md:grid-cols-2">
           <MenuList title="Kaffe" items={coffeeMenu} />
-          <MenuList title="Vedfyrt pizza" items={pizzaMenu} />
+          <div className="space-y-8">
+            <figure className="overflow-hidden rounded-3xl border border-border bg-secondary">
+              <img
+                src={photoPizzas.url}
+                alt="To ferdigstekte pizzaer på trefjøl i kjøkkenet"
+                className="mx-auto h-auto w-full max-w-[584px] object-contain"
+                loading="lazy"
+              />
+            </figure>
+            <MenuList title="Vedfyrt pizza" items={pizzaMenu} />
+          </div>
         </div>
 
         <div className="my-16 flex flex-col items-center gap-6 border-y border-border py-12 text-center">
