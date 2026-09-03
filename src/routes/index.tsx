@@ -232,14 +232,7 @@ function Menu() {
 
         <div className="mt-14 grid gap-14 md:grid-cols-2">
           <MenuList title="Kaffe" items={coffeeMenu} />
-          <figure data-reveal className="reveal">
-            <img
-              src={paddenPizza.url}
-              alt="Padden Pizza meny: Margherita, Bufo Skinke, Grønne Padde, Paddens Picante, Paddemyrens Spekeskinke og Bufo Bianco, med froskekokken ved pizzaovnen"
-              className="mx-auto h-auto w-full max-w-[480px] object-contain"
-              loading="lazy"
-            />
-          </figure>
+          <MenuList title="Pizza" items={pizzaMenu} />
         </div>
 
         <div className="my-16 flex flex-col items-center gap-6 border-y border-border py-12 text-center">
