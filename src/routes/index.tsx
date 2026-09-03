@@ -231,17 +231,17 @@ function Menu() {
 
         <div className="mt-14 grid gap-14 md:grid-cols-2">
           <MenuList title="Kaffe" items={coffeeMenu} />
-          <div className="space-y-8">
-            <figure className="overflow-hidden rounded-3xl border border-border bg-secondary">
-              <img
-                src={photoPizzas.url}
-                alt="To ferdigstekte pizzaer på trefjøl i kjøkkenet"
-                className="mx-auto h-auto w-full max-w-[584px] object-contain"
-                loading="lazy"
-              />
-            </figure>
-            <MenuList title="Vedfyrt pizza" items={pizzaMenu} />
-          </div>
+          <figure
+            data-reveal
+            className="reveal overflow-hidden rounded-3xl border border-border bg-secondary"
+          >
+            <img
+              src={paddenPizza.url}
+              alt="Padden Pizza meny: Margherita, Bufo Skinke, Grønne Padde, Paddens Picante, Paddemyrens Spekeskinke og Bufo Bianco, med froskekokken ved pizzaovnen"
+              className="mx-auto h-auto w-full max-w-[480px] object-contain"
+              loading="lazy"
+            />
+          </figure>
         </div>
 
         <div className="my-16 flex flex-col items-center gap-6 border-y border-border py-12 text-center">
